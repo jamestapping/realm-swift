@@ -59,7 +59,12 @@ let package = Package(
             targets: ["RealmSwift"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/realm/realm-core.git", exact: coreVersion)
+        // Temporary: pinned to a fork of realm-core at v20.1.4 plus a
+        // cherry-pick of upstream PR #8096 ("Fix Xcode 27 build error"),
+        // since that fix is still unreleased upstream. Revert to
+        // .package(url: "https://github.com/realm/realm-core.git", exact: coreVersion)
+        // once realm-core tags a release containing it.
+        .package(url: "https://github.com/jamestapping/realm-core.git", revision: "956f8555ea552f027890e2c8331a91a595776e12")
     ],
     targets: [
       .target(
